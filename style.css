@@ -18,6 +18,29 @@ body {
     cursor:initial;
 }
 
+/* Loader with black background */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hello text animation */
+    .hello-text {
+      font-size: 32px;
+      font-weight: 500;
+      color: #ffffff;
+      transition: opacity 0.5s;
+    }
+
+
 /* ADDED: Style for the new global particle background */
 #global-particles-js {
     position: fixed;
@@ -242,7 +265,7 @@ body {
 #about {
     position: relative;
     overflow: hidden;
-    padding-top: 1rem; 
+    padding-top: 2rem; 
 }
 
 .about-content {
@@ -250,13 +273,13 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem 4rem;
+    gap: 0rem 4rem;
     max-width: 1100px;
     margin: 0 auto;
     height: auto;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(24, 22, 22, 0.7);
-    padding: 3rem;
+    border: 1px solid rgb(11, 11, 11);
+    background-color: rgba(8, 8, 8, 0.833);
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transform: translateY(50px);
@@ -368,51 +391,138 @@ body {
 
 /* --- Enhanced Skills Section --- */
 #skills {
-    background: #0a0a0a;
-    padding: 4rem 5%;
-}
+            background: #0a0a0a;
+            padding: 4rem 5%;
+            min-height: 100vh;
+        }
 
-.skills-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+            position: relative;
+        }
 
-.skills-category h3 {
-    color: #eee;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #333;
-    padding-bottom: 0.5rem;
-}
+        .skills-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+        .skills-category h3 {
+            color: #eee;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
 
-.skill-tag {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #ccc;
-    position: relative; /* Required for the progress bar overlay */
-    overflow: hidden; /* Clips the progress bar to the tag's corners */
-    z-index: 1; /* Ensures text stays on top */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-.skill-tag:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ccc;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: default;
+        }
 
+        .skill-tag img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
 
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-tag:hover img {
+            transform: scale(1.2);
+        }
+
+        /* Animation for the section */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skills-category {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .skills-category:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skills-category:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .skills-category:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        /* Pulse animation for icons */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .skill-tag:hover img {
+            animation: pulse 1s infinite;
+        }
+
+        /* Skill level indicator */
+        .skill-tag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00b4db, #0083b0);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .skill-tag:hover::after {
+            transform: scaleX(1);
+        }
 /* --- Projects Section --- */
 .projects-grid {
     display: grid;
@@ -431,7 +541,7 @@ body {
 .project-card:hover { transform: translateY(-10px); }
 .project-card img {
     width: 100%;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
 }
 .project-card-content {
@@ -628,23 +738,23 @@ body {
           flex-grow: 1;
         }
         .footer-minimal {
-            /* background-color: #111827; */
+            background-color: rgba(0, 0, 0, 0.811);
             color: #d1d5db; /* Light grey text */
-            padding: 4rem 2rem;
+            padding: 3rem 0rem;
             text-align: center;
         }
         .footer-minimal .footer-heading {
             font-size: 2rem;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 5rem;
+            margin-bottom: 2rem;
             
         }
         .footer-minimal .social-link {
             display: flex;
             justify-content: center;
             gap: 1.5rem; /* Space between icons */
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem;
         }
         .footer-minimal .social-link a {
             color: #9ca3af; /* Medium grey for icons */
@@ -655,7 +765,7 @@ body {
             transform: scale(1.1);
         }
         .footer-minimal .footer-nav {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         .footer-minimal .footer-nav a {
             color: #d1d5db;
@@ -678,6 +788,75 @@ body {
             font-weight: 500;
         }
 
+/* contact section----------- */
+
+#contact {
+  padding: 5rem 2rem;
+  /* background-color: #0d0d0d; */
+  color: white;
+  text-align: center;
+}
+#contact .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    opacity: 1;
+    transform: translateY(-10px);
+    transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position: relative;
+    z-index: 10;
+}
+.contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid;
+  border-radius: 20px;
+  font-size: 1rem;
+  background-color: transparent;
+  color: white;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+.send-btn {
+  background-color: #373539;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border: 1px solid;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #373539;
+}
+
+
+
+    
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     body { cursor: default; }

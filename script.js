@@ -169,3 +169,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     educationObserver.observe(educationSection);
 });
+
+
+// Loading --------------------
+
+
+    const greetings = [
+      "Hello", "Hola", "Bonjour", "नमस्ते",
+      "こんにちは", "안녕하세요", "Ciao",
+      "Olá", "Hallo", "Salaam"
+    ];
+
+    let index = 0;
+    const helloText = document.getElementById("helloText");
+
+    const changeText = setInterval(() => {
+      index = (index + 1) % greetings.length;
+      helloText.style.opacity = 0;
+      setTimeout(() => {
+        helloText.textContent = greetings[index];
+        helloText.style.opacity = 1;
+      }, 300);
+    }, 300); // change every 1.5 seconds
+
+    // Simulate loading complete
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        clearInterval(changeText);
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }, 3000); // show main content after 5 seconds
+    });
